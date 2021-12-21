@@ -13,13 +13,10 @@ extension Array where Element == Int {
     func countIncreases(windowSize: Int = 1) -> Int {
         let windows = enumerated()
             .filter { $0.offset <= (count - windowSize) }
-            .reduce(into: [Int]()) {
-                $0.append(
-                    Array(self[$1.offset..<($1.offset + windowSize)]).reduce(0, +)
-                )
-            }
+            .map { Array(self[$0.offset..<($0.offset + windowSize)]).reduce(0, +) }
+            .reduce(into: [Int]()) { $0.append($1) }
 
-        return zip(windows.dropFirst(), windows).map(-).filter { $0 > 0 }.count
+        return zip(windows.dropFirst(), windows).map(-).count { $0 > 0 }
     }
 
 }

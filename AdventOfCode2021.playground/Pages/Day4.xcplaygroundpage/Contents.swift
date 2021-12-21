@@ -55,11 +55,7 @@ class Board {
     }
 
     var score: Int {
-        grid.reduce(into: 0) { result, line in
-            result += line
-                .filter { !$0.marked }
-                .reduce(into: 0) { $0 += $1.value }
-        }
+        grid.map { $0.filter { !$0.marked }.reduce(into: 0) { $0 += $1.value } }.reduce(0, +)
     }
 
     private lazy var columns: [[Number]] = {
@@ -86,11 +82,11 @@ class Board {
     }
 
     private func check(line: [Number]) -> Bool {
-        line.count == line.filter({ $0.marked }).count
+        line.count == line.count { $0.marked }
     }
 
     private func column(at index: Int) -> [Number] {
-        grid.reduce(into: [Number]()) { $0.append($1[index]) }
+        grid.map { $0[index] }.reduce(into: [Number]()) { $0.append($1) }
     }
 
 }
