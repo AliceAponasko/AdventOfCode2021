@@ -6,3 +6,10 @@
 - [Day 2](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day2.xcplaygroundpage/Contents.swift)
 - [Day 3](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day3.xcplaygroundpage/Contents.swift)
 - [Day 4](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day4.xcplaygroundpage/Contents.swift)
+- [Day 5](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day5.xcplaygroundpage/Contents.swift)
+- [Day 6](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day6.xcplaygroundpage/Contents.swift)
+- [Day 7](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day7.xcplaygroundpage/Contents.swift)
+
+## Extensions
+
+I wrote some [extensions](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Sources/Extensions.swift) to simplify the solution code.
