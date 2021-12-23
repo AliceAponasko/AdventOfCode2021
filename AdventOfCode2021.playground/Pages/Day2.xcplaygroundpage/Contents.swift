@@ -4,8 +4,8 @@ extension Day2 {
 
     static func parseData() -> [Direction] {
         Day2.data
-            .components(separatedBy: "\n")
-            .map { String($0).components(separatedBy: " ") }
+            .components(separatedBy: .newlines)
+            .map { String($0).components(separatedBy: .whitespaces) }
             .map { Direction(direction: $0.first!, points: Int($0.last!)!) }
     }
 

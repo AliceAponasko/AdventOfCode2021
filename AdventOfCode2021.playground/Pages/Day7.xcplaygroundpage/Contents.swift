@@ -3,7 +3,7 @@ import Foundation
 extension Day7 {
 
     static func parseData() -> [Int] {
-        Day7.data.components(separatedBy: ",").map { Int($0)! }
+        Day7.data.components(separatedBy: ",").compactMap { Int($0) }
     }
 
 }
@@ -26,14 +26,11 @@ struct Crabs {
 
         return [doubleMean.rounded(.up), doubleMean.rounded(.down)]
             .map { Int($0) }
-            .reduce(into: [Int]()) { fuels, mean in
-                fuels.append(
-                    submarines.reduce(into: 0) { result, submarine in
-                        let value = abs(submarine - mean)
-                        let fuel = value * (value + 1) / 2
-                        result += fuel
-                    }
-                )
+            .map { mean -> Int in
+                submarines
+                    .map { submarine -> Int in abs(submarine - mean) }
+                    .map { value -> Int in value * (value + 1) / 2 }
+                    .reduce(0, +)
             }
             .min()!
     }

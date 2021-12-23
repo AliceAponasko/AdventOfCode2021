@@ -3,7 +3,7 @@ import Foundation
 extension Day6 {
 
     static func parseData() -> [Int] {
-        Day6.data.components(separatedBy: ",").map { Int($0)! }
+        Day6.data.components(separatedBy: ",").compactMap { Int($0) }
     }
 
 }

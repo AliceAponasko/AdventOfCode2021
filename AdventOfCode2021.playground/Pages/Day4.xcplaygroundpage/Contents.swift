@@ -8,20 +8,17 @@ extension Day4 {
         return (
             components.removeFirst()
                 .components(separatedBy: ",")
-                .map { Int($0)! }
-                .reduce(into: DrawingNumbers()) { $0.append($1) },
+                .compactMap { Int($0) },
             components.reduce(into: [Board]()) { resultBoards, board in
                 resultBoards.append(
-                    board.components(separatedBy: "\n")
+                    board.components(separatedBy: .newlines)
                         .reduce(into: Board()) { resultBoard, line in
                             resultBoard.grid.append(
                                 line
                                     .components(separatedBy: " ")
                                     .filter { $0 != "" }
-                                    .map { Int($0)! }
-                                    .reduce(into: [Board.Number]()) {
-                                        $0.append(Board.Number($1))
-                                    }
+                                    .compactMap { Int($0) }
+                                    .map { Board.Number($0) }
                             )
                         }
                 )
@@ -55,13 +52,11 @@ class Board {
     }
 
     var score: Int {
-        grid.map { $0.filter { !$0.marked }.reduce(into: 0) { $0 += $1.value } }.reduce(0, +)
+        grid.map { $0.filter { !$0.marked }.map { $0.value }.reduce(0, +) }.reduce(0, +)
     }
 
     private lazy var columns: [[Number]] = {
-        grid.enumerated().reduce(into: [[Number]]()) { result, iterator in
-            result.append(column(at: iterator.offset))
-        }
+        grid.enumerated().map { column(at: $0.offset) }
     }()
 
     @discardableResult
@@ -86,7 +81,7 @@ class Board {
     }
 
     private func column(at index: Int) -> [Number] {
-        grid.map { $0[index] }.reduce(into: [Number]()) { $0.append($1) }
+        grid.map { $0[index] }
     }
 
 }

@@ -3,7 +3,7 @@ import Foundation
 extension Day3 {
 
     static func parseData() -> [String] {
-        Day3.data.components(separatedBy: "\n").map { String($0) }
+        Day3.data.components(separatedBy: .newlines).map { String($0) }
     }
 
 }

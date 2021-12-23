@@ -4,16 +4,14 @@ extension Day5 {
 
     static func parseData() -> [Line] {
         Day5.data
-            .components(separatedBy: "\n")
+            .components(separatedBy: .newlines)
             .map { String($0) }
             .reduce(into: [Line]()) { partialResult, line in
                 let coordinates = line
                     .components(separatedBy: " -> ")
                     .map { String($0) }
                     .map { $0.components(separatedBy: ",") }
-                    .reduce(into: [Coordinate]()) {
-                        $0.append(Coordinate(x: $1.first, y: $1.last))
-                    }
+                    .map { Coordinate(x: $0.first, y: $0.last) }
 
                 partialResult.append(Line(coordinates.first!, coordinates.last!))
             }
