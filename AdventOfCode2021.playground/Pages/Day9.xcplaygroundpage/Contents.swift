@@ -20,7 +20,7 @@ struct Coordinate: Equatable {
     var left: Self { Coordinate(x: x, y: y - 1) }
     var right: Self { Coordinate(x: x, y: y + 1) }
 
-    func adjacent(upTo max: Int) -> [Coordinate] {
+    func adjacent(heights: [[Int]]) -> [Int] {
         var neighbors = [Coordinate]()
 
         (up.x...down.x).forEach { x in
@@ -29,11 +29,9 @@ struct Coordinate: Equatable {
             }
         }
 
-        neighbors.remove(at: neighbors.firstIndex(of: self)!)
-
         return neighbors
-            .filter { $0.x >= 0 && $0.y >= 0 }
-            .filter { $0.x < max && $0.y < max }
+            .filter { $0 != self }
+            .compactMap { heights[safe: $0.x]?[safe: $0.y] }
     }
 
 }
@@ -46,8 +44,7 @@ class Heightmap {
         heights.enumerated().forEach { x, row in
             row.enumerated().forEach { y, height in
                 if Coordinate(x: x, y: y)
-                    .adjacent(upTo: heights.count)
-                    .map({ heights[$0.x][$0.y] })
+                    .adjacent(heights: heights)
                     .filter({ $0 <= height })
                     .isEmpty {
                     result.append(height.riskLevel)
@@ -82,12 +79,12 @@ class Heightmap {
         in heights: [[Int]],
         visited: inout [[Bool]]
     ) -> Int {
-        guard c.x >= 0, c.y >= 0 else { return 0 }
-        guard c.x < heights.count, c.y < heights.count else { return 0 }
+        guard let height = heights[safe: c.x]?[safe: c.y] else { return 0 }
+        guard height < 9 else { return 0 }
         guard !visited[c.x][c.y] else { return 0 }
-        guard heights[c.x][c.y] < 9 else { return 0 }
 
         visited[c.x][c.y] = true
+
         return 1 +
         findBasin(from: c.up, in: heights, visited: &visited) +
         findBasin(from: c.down, in: heights, visited: &visited) +

@@ -7,6 +7,14 @@ extension Array {
 
 }
 
+extension Collection {
+
+    public subscript(safe index: Index) -> Element? {
+        indices.contains(index) ? self[index] : nil
+    }
+
+}
+
 extension Sequence {
 
     public func count(where condition: (Element) throws -> (Bool)) rethrows -> Int {
