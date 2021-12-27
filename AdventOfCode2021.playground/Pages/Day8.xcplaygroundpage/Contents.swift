@@ -1,12 +1,5 @@
 import Foundation
 
-private extension String {
-
-    func toSegments() -> Set<Segment> {
-        Set(map { Segment(rawValue: String($0))! })
-    }
-}
-
 extension Day8 {
 
     static func parseData() -> [Note] {
@@ -140,6 +133,13 @@ struct Decoder {
             }
     }
 
+}
+
+private extension String {
+
+    func toSegments() -> Set<Segment> {
+        Set(map { Segment(rawValue: String($0))! })
+    }
 }
 
 print(Decoder.decodeUniqueNumbers(from: Day8.parseData(), submarine: Submarine()))
