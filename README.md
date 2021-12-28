@@ -11,6 +11,7 @@
 - [Day 7](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day7.xcplaygroundpage/Contents.swift)
 - [Day 8](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day8.xcplaygroundpage/Contents.swift)
 - [Day 9](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day9.xcplaygroundpage/Contents.swift)
+- [Day 10](https://github.com/AliceAponasko/AdventOfCode2021/blob/main/AdventOfCode2021.playground/Pages/Day10.xcplaygroundpage/Contents.swift)
 
 ## Extensions
 
