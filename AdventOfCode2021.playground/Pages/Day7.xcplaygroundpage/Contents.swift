@@ -14,8 +14,7 @@ struct Crabs {
     /// https://en.wikipedia.org/wiki/Median
     /// https://en.wikipedia.org/wiki/Median#Optimality_property
     static func align(submarines: [Int]) -> Int {
-        let median = submarines.sorted(by: <)[submarines.count / 2]
-        return submarines.map { abs($0 - median) }.reduce(0, +)
+        submarines.map { abs($0 - submarines.sorted(by: <).middle!) }.reduce(0, +)
     }
 
     /// Refactored with https://www.reddit.com/r/adventofcode/comments/rar7ty/comment/hnk6gz0/
